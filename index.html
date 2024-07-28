@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+       body {
+           background-color: rgb(176, 201, 241);
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           height: 100vh;
+           margin: 0;
+           font-family: Monospace;
+           text-align: center;
+       }
+
+       .container {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+       }
+
+       .title-box, .clock-box {
+           border: 3px solid black;
+           border-radius: 10px;
+           background-color: #f9f9f9;
+           box-sizing: border-box;
+           margin-bottom: 20px;
+           box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
+           transition: hover;
+          
+       }
+
+       .title-box {
+           padding: 10px;
+           min-width: 300px;
+           min-height: 130px;
+           font-size: 30px;
+       }
+
+       .clock-box {
+           padding: 20px;
+           min-width: 300px;
+           min-height: 200px;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+       }
+
+       h1 {
+       color: white;
+     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+       }
+
+       h2 {
+        color: black; 
+        margin: 0;
+        font-size: 120px;
+       }
+       .clock-box:hover{
+        box-shadow: 30px 30px 30px rgba(0, 0, 0, 0.1);
+        border: 5px solid black;
+       }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title-box">
+            <h1>Digital Clock</h1>
+        </div>
+        <div class="clock-box">
+            <h2 id="msg"></h2>
+        </div>
+    </div>
+    <script>
+        // Function to display the current time
+        function show() {
+            let msg = document.getElementById("msg");
+            let d = new Date();
+            let hr = d.getHours();
+            let mi = d.getMinutes();
+            let se = d.getSeconds();
+            
+            // Format hours, minutes, and seconds with leading zeros if necessary
+            let shr = hr < 10 ? "0" + hr : hr;
+            let smi = mi < 10 ? "0" + mi : mi;
+            let sse = se < 10 ? "0" + se : se;
+            
+            // Combine formatted time parts into a single string
+            let ans = `${shr}:${smi}:${sse}`;
+            
+            // Update the content of the h2 element with the current time
+            msg.innerHTML = ans;
+        }
+
+        // Initial call to show the time immediately when the page loads
+        show();
+
+        // Update the time every second
+        setInterval(show, 1000);
+    </script>
+</body>
+</html>
